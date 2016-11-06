@@ -1,42 +1,17 @@
-//create pagination
-  //loop through elements to count them
-  //queryselectorall? li.student-item
-  // var parent = document.getElementById('parent');
-  // var child_nodes = parent.childNodes;
-  // console.log(child_nodes.length); // let's assume "2"
-  // parent.appendChild(document.createElement('div'));
-  // console.log(child_nodes.length); // should output "3"
-  //https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+//https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 
 
-//console.log(students[0]);//gives us the html elements that we need for items
-//pageNum * 10 - 1 ; the loop start; loop end would be initial start + 10
-//var pageHtml = " ";
-//var slidesHolder = document.getElementsByClassName("student-list");
-//onsole.log(slidesHolder);
-
-
-
-
-
-//console.log(pageHtml);
-//slidesHolder.innerHTML();
-
-//looping over a nodelist
-//http://www.w3schools.com/js/js_htmldom_nodelist.asp
-
-  //number of pages: var div = Math.floor(total# of items/10);
-  //number of items on the last page: var rem = total# of items % 10;
+//number of items on the last page:
 
 var students = document.querySelectorAll('li.student-item');
 //console.log("Students list:  ", students);
-
-
-
-var students = document.querySelectorAll('li.student-item');
+var studentsCount = students.length;
+var rem = studentsCount % 10;
+var pageNum = Math.ceil(students.length/10);
+var pageSelected = 6;
 
 function addPagination(students) {
-  var pageNum = Math.ceil(students.length/10);
+
   console.log("page #s:   ", pageNum);
 
   var pageDiv = document.createElement("div");
@@ -45,29 +20,53 @@ function addPagination(students) {
   var pageList = document.createElement("ul");
 
   for(var i=1; i<=pageNum; i++) {
-            var pageLink = document.createElement("li");
-            var pageURL = document.createElement("a");
-            pageURL.innerText = i;
-            pageURL.setAttribute("href", "#" +i );
-            pageLink.appendChild(pageURL);
-            pageList.appendChild(pageLink);
-          }
+    var pageLink = document.createElement("li");
+    var pageURL = document.createElement("a");
+    pageURL.innerText = i;
+    pageURL.setAttribute("href", "#" +i );
+    pageLink.appendChild(pageURL);
+    pageList.appendChild(pageLink);
+  }
   var listDiv = document.getElementsByClassName("page")[0];
   pageDiv.appendChild(pageList);
   listDiv.appendChild(pageDiv);
 }
 
+function displayStudents (students) {
+  var firstStudent=0;
+  var lastStudent=0;
+  console.log("firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+  console.log("pageNum: ", pageNum, " pageSelected: ", pageSelected);
+  if (pageNum === pageSelected) {
+    firstStudent = (10 * pageNum) - 1;
+    lastStudent = firstStudent + rem;
+    console.log("inside if","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+    console.log("inside if ","pageNum: ", pageNum, " pageSelected: ", pageSelected);
+    console.log("inside if ", "rem: ", rem);
+
+  } else {
+    firstStudent = (10 * pageNum) - 1;
+    lastStudent = firstStudent + 10;
+  }
+
+  for (var i = 0; i < studentsCount; i++) {
+    document.getElementsByClassName('student-list')[0].children[i].style.display = 'none';
+  }
+
+   for (var j = firstStudent; j < lastStudent; j++) {
+     //document.getElementsByClassName('student-list')[0].children[j].style.display = 'block';
+     console.log("inside loop ","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+
+     //document.getElementsByClassName('.student-list')[0].children[0].style.display = 'block';
+ }
+   document.getElementsByClassName('student-list')[0].children[0].style.display = 'block';
+   document.getElementsByClassName('student-list')[0].children[17].style.display = 'block';
+
+}
+
 addPagination(students);
+displayStudents(students);
 
 //search give current items on each click up
 //console.log(document.getElementsByClassName('student-list'));
 //console.log(document.getElementsByClassName('student-list')[0].children);
-//document.getElementsByClassName('student-list')[0].children[6].style.display = 'none';
-
-// for (var i = 0; i < students.length; i++) {
-//   document.getElementsByClassName('student-list')[0].children[i].style.display = 'none';
-// }
-//
-// for (var i = 19; i < 29; i++) {
-//   document.getElementsByClassName('student-list')[0].children[i].style.display = 'block';
-// }
