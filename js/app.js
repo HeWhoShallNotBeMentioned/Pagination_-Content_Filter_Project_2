@@ -38,14 +38,14 @@ function displayStudents (students) {
   console.log("firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
   console.log("pageNum: ", pageNum, " pageSelected: ", pageSelected);
   if (pageNum === pageSelected) {
-    firstStudent = (10 * pageNum) - 1;
+    firstStudent = (10 * pageSelected) - 10;
     lastStudent = firstStudent + rem;
     console.log("inside if","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
     console.log("inside if ","pageNum: ", pageNum, " pageSelected: ", pageSelected);
     console.log("inside if ", "rem: ", rem);
 
   } else {
-    firstStudent = (10 * pageNum) - 1;
+    firstStudent = (10 * pageSelected) - 10;
     lastStudent = firstStudent + 10;
   }
 
@@ -54,13 +54,13 @@ function displayStudents (students) {
   }
 
    for (var j = firstStudent; j < lastStudent; j++) {
-     //document.getElementsByClassName('student-list')[0].children[j].style.display = 'block';
-     console.log("inside loop ","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
 
+     console.log("inside loop ","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+     document.getElementsByClassName('student-list')[0].children[j].style.display = 'block';
      //document.getElementsByClassName('.student-list')[0].children[0].style.display = 'block';
  }
-   document.getElementsByClassName('student-list')[0].children[0].style.display = 'block';
-   document.getElementsByClassName('student-list')[0].children[17].style.display = 'block';
+   //document.getElementsByClassName('student-list')[0].children[0].style.display = 'block';
+   //document.getElementsByClassName('student-list')[0].children[17].style.display = 'block';
 
 }
 
@@ -68,5 +68,3 @@ addPagination(students);
 displayStudents(students);
 
 //search give current items on each click up
-//console.log(document.getElementsByClassName('student-list'));
-//console.log(document.getElementsByClassName('student-list')[0].children);
