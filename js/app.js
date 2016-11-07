@@ -8,7 +8,6 @@ var pageNum = Math.ceil(students.length/10);
 var pageSelected = 1;
 var pageDOM;
 
-
 function addPagination(students) {
 
 //  console.log("page #s:   ", pageNum);
@@ -53,8 +52,7 @@ function displayStudents (students) {
   }
 
    for (var j = firstStudent; j < lastStudent; j++) {
-
-     console.log("inside loop ","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+     //console.log("inside loop ","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
      document.getElementsByClassName('student-list')[0].children[j].style.display = 'block';
  }
 }
@@ -76,7 +74,7 @@ console.log("Inside Search Box");
 //create search field
   var searchInput = document.createElement("input");
 // set attributes for input
-    searchInput.setAttribute("type", "search");//maybe text
+  searchInput.setAttribute("type", "search");//maybe text
 //create button
   var searchButton = document.createElement("button");
   searchButton.appendChild(document.createTextNode('Search'));
@@ -98,8 +96,10 @@ pageDOM.addEventListener('click', pickPage, false);
 //Implement search feature
 
   //define what I am searching for (i.e. what fields I will be searching)
+        //name and email
   //send search when button is clicked
   //clear screen
+  //find items that match
   //print items that match the search
   //make sure pagination works for those items
   //let the user know if nothing matches their search terms
