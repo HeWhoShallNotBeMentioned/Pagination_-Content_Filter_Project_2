@@ -1,23 +1,23 @@
-//https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 
-
-//number of items on the last page:
 
 var students = document.querySelectorAll('li.student-item');
 //console.log("Students list:  ", students);
 var studentsCount = students.length;
 var rem = studentsCount % 10;
 var pageNum = Math.ceil(students.length/10);
-var pageSelected = 6;
+var pageSelected = 1;
+var pageDOM;
+
 
 function addPagination(students) {
 
   console.log("page #s:   ", pageNum);
 
   var pageDiv = document.createElement("div");
-  pageDiv.className = "pagination";
+
 
   var pageList = document.createElement("ul");
+  pageList.className = "pagination";
 
   for(var i=1; i<=pageNum; i++) {
     var pageLink = document.createElement("li");
@@ -30,6 +30,7 @@ function addPagination(students) {
   var listDiv = document.getElementsByClassName("page")[0];
   pageDiv.appendChild(pageList);
   listDiv.appendChild(pageDiv);
+  pageDOM = document.getElementsByClassName("pagination")[0];
 }
 
 function displayStudents (students) {
@@ -37,7 +38,7 @@ function displayStudents (students) {
   var lastStudent=0;
   console.log("firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
   console.log("pageNum: ", pageNum, " pageSelected: ", pageSelected);
-  if (pageNum === pageSelected) {
+  if (pageNum == pageSelected) {
     firstStudent = (10 * pageSelected) - 10;
     lastStudent = firstStudent + rem;
     console.log("inside if","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
@@ -57,14 +58,25 @@ function displayStudents (students) {
 
      console.log("inside loop ","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
      document.getElementsByClassName('student-list')[0].children[j].style.display = 'block';
-     //document.getElementsByClassName('.student-list')[0].children[0].style.display = 'block';
  }
-   //document.getElementsByClassName('student-list')[0].children[0].style.display = 'block';
-   //document.getElementsByClassName('student-list')[0].children[17].style.display = 'block';
-
 }
+
+function pickPage(e) {
+  console.log("Inside pickPage");
+  console.log("event: ", e);
+  console.log(e.target.innerHTML);
+  pageSelected = e.target.innerHTML;
+  displayStudents(students);
+}
+
 
 addPagination(students);
 displayStudents(students);
+pageDOM.addEventListener('click', pickPage, false);
+
 
 //search give current items on each click up
+
+//change previous alink
+//get clicked link
+//change to clicked alink
