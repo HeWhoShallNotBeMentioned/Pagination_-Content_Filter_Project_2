@@ -23,7 +23,7 @@ function addPagination(students) {
     var pageLink = document.createElement("li");
     var pageURL = document.createElement("a");
     pageURL.innerText = i;
-    pageURL.setAttribute("href", "#" +i );
+    //pageURL.setAttribute("href", "#" +i );
     pageLink.appendChild(pageURL);
     pageList.appendChild(pageLink);
   }
@@ -74,9 +74,18 @@ addPagination(students);
 displayStudents(students);
 pageDOM.addEventListener('click', pickPage, false);
 
+//Implement search feature
+  //place search field on the screen
+  //place button on the screen
+  //define what I am searching for (i.e. what fields I will be searching)
+  //send search when button is clicked
+  //clear screen
+  //print items that match the search
+  //make sure pagination works for those items
+  //let the user know if nothing matches their search terms
+ //search give current items on each upClick
 
-//search give current items on each click up
-
-//change previous alink
-//get clicked link
-//change to clicked alink
+//Highlight current page via paginate button
+  //change previous alink
+  //get clicked link
+  //change to clicked alink
