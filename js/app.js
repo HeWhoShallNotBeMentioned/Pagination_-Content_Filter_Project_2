@@ -11,11 +11,9 @@ var pageDOM;
 
 function addPagination(students) {
 
-  console.log("page #s:   ", pageNum);
+//  console.log("page #s:   ", pageNum);
 
   var pageDiv = document.createElement("div");
-
-
   var pageList = document.createElement("ul");
   pageList.className = "pagination";
 
@@ -36,14 +34,14 @@ function addPagination(students) {
 function displayStudents (students) {
   var firstStudent=0;
   var lastStudent=0;
-  console.log("firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
-  console.log("pageNum: ", pageNum, " pageSelected: ", pageSelected);
+  // console.log("firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+  // console.log("pageNum: ", pageNum, " pageSelected: ", pageSelected);
   if (pageNum == pageSelected) {
     firstStudent = (10 * pageSelected) - 10;
     lastStudent = firstStudent + rem;
-    console.log("inside if","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
-    console.log("inside if ","pageNum: ", pageNum, " pageSelected: ", pageSelected);
-    console.log("inside if ", "rem: ", rem);
+    // console.log("inside if","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+    // console.log("inside if ","pageNum: ", pageNum, " pageSelected: ", pageSelected);
+    // console.log("inside if ", "rem: ", rem);
 
   } else {
     firstStudent = (10 * pageSelected) - 10;
@@ -69,14 +67,36 @@ function pickPage(e) {
   displayStudents(students);
 }
 
+function addSearchBox() {
+console.log("Inside Search Box");
+//Create Div to hold search box
+  var searchDiv = document.createElement("div");
+// add class student-search to div
+  searchDiv.setAttribute("class", "student-search" );
+//create search field
+  var searchInput = document.createElement("input");
+// set attributes for input
+    searchInput.setAttribute("type", "search");//maybe text
+//create button
+  var searchButton = document.createElement("button");
+  searchButton.appendChild(document.createTextNode('Search'));
+//Add search field to div
+  searchDiv.appendChild(searchInput);
+//Add button to div
+  searchDiv.appendChild(searchButton);
+//Add Div
+  var pageHeader = document.getElementsByClassName("page-header")[0];
+  pageHeader.appendChild(searchDiv);
+}
+
 
 addPagination(students);
+addSearchBox();
 displayStudents(students);
 pageDOM.addEventListener('click', pickPage, false);
 
 //Implement search feature
-  //place search field on the screen
-  //place button on the screen
+
   //define what I am searching for (i.e. what fields I will be searching)
   //send search when button is clicked
   //clear screen
