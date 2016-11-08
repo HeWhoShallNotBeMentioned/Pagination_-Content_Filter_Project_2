@@ -1,34 +1,28 @@
 # _{Pagination_&_Content_Filter_Project_2}_
 
-#### _{Brief description of application}, {//2016}_
+#### _{Brief description of application}, {11/8/2016}_
 
 #### By _**{Chris Underwood}**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_{ Using vanilla JS only, pagination is dynamically placed on the screen. The software is build to support and undetermined number of students with one page per 10 students and one additional page if there are students left over but less than ten. A search box is also dynamically placed on the screen that searches for user name and email on keyup. a message is displayed on the screen if there are no matching items in the search. I am trying to get the pagination buttons to highlight when they are active but the unhighlighting is proving difficult  }_
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
-
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
+Download the files and open the index.html file in the browser of your choice.
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+_{The previously mentioned highlighting of pagination buttons. Whenm in the search box and after I have no users meeting the criteria, you will need to refresh the page or click on a page number to "reset" the program.  When using the search box, when the program is returning users I am receiving an error in the console that my code to remove the message div is giving an error (Uncaught TypeError: Cannot read property 'remove' of undefine). The code appears to be working fine for the user.}_
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+_{_cunderwoodmn [at] gmail {dot} com}_
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+_{HTML, CSS, vanilla JS}_
 
 ### License
 
