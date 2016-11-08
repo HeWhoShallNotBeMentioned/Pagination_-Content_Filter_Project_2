@@ -7,6 +7,8 @@ var rem = studentsCount % 10;
 var pageNum = Math.ceil(students.length/10);
 var pageSelected = 1;
 var pageDOM;
+var pagePrevious = 1;
+
 
 function addPagination(students) {
 
@@ -20,7 +22,7 @@ function addPagination(students) {
     var pageLink = document.createElement("li");
     var pageURL = document.createElement("a");
     pageURL.innerText = i;
-    //pageURL.setAttribute("href", "#" +i );
+    pageURL.setAttribute("class", "");
     pageLink.appendChild(pageURL);
     pageList.appendChild(pageLink);
   }
@@ -58,11 +60,18 @@ function displayStudents (students) {
 }
 
 function pickPage(e) {
+
   console.log("Inside pickPage");
   console.log("event: ", e);
   console.log(e.target.innerHTML);
+  pagePrevious.removeAttribute("class");
   pageSelected = e.target.innerHTML;
+  e.target.setAttribute("class", "active");
+
+  pagePrevious = e.target.innerHTML;
+console.log("pageSelected",pageSelected);
   displayStudents(students);
+
 }
 
 function addSearchBox() {
@@ -74,7 +83,7 @@ console.log("Inside Search Box");
 //create search field
   var searchInput = document.createElement("input");
 // set attributes for input
-  searchInput.setAttribute("id", "myInput");//maybe text
+  searchInput.setAttribute("id", "myInput");
   searchInput.setAttribute("placeholder", "Search for students...");
   searchInput.setAttribute("onkeyup", 'eachPerson()');
 //create button
@@ -93,6 +102,9 @@ function eachPerson() {
  var allStudents = students;
  var myInput = document.getElementById("myInput");
  var filter = myInput.value.toLowerCase();
+ var numberOfMatches = 0;
+ var messageDivRemoval;
+
 
  for (var k = 0; k < allStudents.length; k++) {
    var personName = allStudents[k].getElementsByTagName("H3")[0].innerText;
@@ -101,21 +113,32 @@ function eachPerson() {
 
          if ((personName.toLowerCase().indexOf(filter) || personEmail.toLowerCase().indexOf(filter)) > -1) {
              personDisplay.style.display = "";
+             numberOfMatches += 1;
          } else {
              personDisplay.style.display = "none";
          }
-     }
+    }
 
-
+  if (numberOfMatches === 0) {
+    var messageDiv = document.createElement("div");
+        messageDiv.setAttribute("class","no-matches");
+        messageDiv.innerText = "There are no matches";
+    var pageHeader = document.getElementsByClassName("page-header")[0];
+        pageHeader.appendChild(messageDiv);
+      } else {
+        messageDivRemoval = document.getElementsByClassName("no-matches")[0];
+        messageDivRemoval.remove();
+      }
   console.log(filter);
 }
 
 
 addPagination(students);
+pageDOM.addEventListener('click', pickPage, false);
 addSearchBox();
 displayStudents(students);
-pageDOM.addEventListener('click', pickPage, false);
-eachPerson();
+
+
 
 //Implement search feature
 
