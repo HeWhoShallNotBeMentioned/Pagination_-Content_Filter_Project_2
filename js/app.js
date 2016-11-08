@@ -74,7 +74,9 @@ console.log("Inside Search Box");
 //create search field
   var searchInput = document.createElement("input");
 // set attributes for input
-  searchInput.setAttribute("type", "search");//maybe text
+  searchInput.setAttribute("id", "myInput");//maybe text
+  searchInput.setAttribute("placeholder", "Search for students...");
+  searchInput.setAttribute("onkeyup", 'eachPerson()');
 //create button
   var searchButton = document.createElement("button");
   searchButton.appendChild(document.createTextNode('Search'));
@@ -87,11 +89,33 @@ console.log("Inside Search Box");
   pageHeader.appendChild(searchDiv);
 }
 
+function eachPerson() {
+ var allStudents = students;
+ var myInput = document.getElementById("myInput");
+ var filter = myInput.value.toLowerCase();
+
+ for (var k = 0; k < allStudents.length; k++) {
+   var personName = allStudents[k].getElementsByTagName("H3")[0].innerText;
+   var personEmail = allStudents[k].getElementsByClassName("email")[0].innerText;
+   var personDisplay = document.getElementsByClassName('student-list')[0].children[k];
+
+         if ((personName.toLowerCase().indexOf(filter) || personEmail.toLowerCase().indexOf(filter)) > -1) {
+             personDisplay.style.display = "";
+         } else {
+             personDisplay.style.display = "none";
+         }
+     }
+
+
+  console.log(filter);
+}
+
 
 addPagination(students);
 addSearchBox();
 displayStudents(students);
 pageDOM.addEventListener('click', pickPage, false);
+eachPerson();
 
 //Implement search feature
 
