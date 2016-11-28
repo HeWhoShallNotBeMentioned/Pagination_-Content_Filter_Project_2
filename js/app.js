@@ -1,7 +1,7 @@
 
 //grabs the list of students
 var students = document.querySelectorAll('li.student-item');
-console.log("Students list:  ", students);
+//console.log("Students list:  ", students);
 //finds the number of students
 var studentsCount = students.length;
 //finds the number of students on the last page
@@ -49,7 +49,7 @@ function addPagination(students) {
   listDiv.appendChild(pageDiv);
   //the variable needed to call the pagination event listener
   pageDOM = document.getElementsByClassName("pagination")[0];
-  console.log("pageDOM:  ", pageDOM);
+  //console.log("pageDOM:  ", pageDOM);
 }
 
 function displayStudents (students) {
@@ -58,17 +58,17 @@ function displayStudents (students) {
   var firstStudent=0;
   //initializes the last student we will display. Useful for the first time but also for each time we change pages and call the function as it resets the variable
   var lastStudent=0;
-   console.log("firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
-  console.log("pageNum: ", pageNum, " pageSelected: ", pageSelected);
+  //console.log("firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+  //console.log("pageNum: ", pageNum, " pageSelected: ", pageSelected);
   //decision tree that first chooses if this is the last page and if not has the functionality for the other pages
   if (pageNum == pageSelected) {
     //sets the first student to be shown if this is the last page
     firstStudent = (10 * pageSelected) - 10;
     //find the remaining number of students to be shown on the last page
     lastStudent = firstStudent + rem;
-    console.log("inside if","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
-    console.log("inside if ","pageNum: ", pageNum, " pageSelected: ", pageSelected);
-    console.log("inside if ", "rem: ", rem);
+    //console.log("inside if","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+    //console.log("inside if ","pageNum: ", pageNum, " pageSelected: ", pageSelected);
+    //console.log("inside if ", "rem: ", rem);
 
   } else {
     //sets the first student to be shown
@@ -82,26 +82,28 @@ function displayStudents (students) {
   }
   //shows those elements to be shown on the selected page.
    for (var j = firstStudent; j < lastStudent; j++) {
-     console.log("inside loop ","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
+     //console.log("inside loop ","firstStudent: ", firstStudent, " lastStudent: ", lastStudent);
      document.getElementsByClassName('student-list')[0].children[j].style.display = 'block';
  }
 }
 
+//Determines the page number selected and higlights it in the pagination
 function pickPage(e) {
-//function that determines which page was selected and then goes to displayStudents to show them. I have also been trying to get the functionality of the active page buttons to work but I cannot get the remove feature to work.
-  console.log("Inside pickPage");
-  console.log("event: ", e);
-  console.log(e.target.innerHTML);
-  //part of the attempts to get the remove class="active" from the previous button.
-  //pagePrevious.removeAttribute("class");
-  //get the page selected from the event handler innerText
+  // console.log("Inside pickPage");
+  // console.log("event: ", e);
+  // console.log(e.target.innerHTML);
+  var ulElement = document.getElementsByClassName("pagination")[0];
+  // console.log(ulElement);
+  var liElements = ulElement.getElementsByTagName("a");
+  // console.log("liElements  ",liElements);
+
+  for (var x = 0; x < liElements.length; x++) {
+    liElements[x].classList.remove("active");
+    // console.log(liElements[x]);
+  }
   pageSelected = e.target.innerHTML;
-  //gives the button selected the class of active which highlights it
   e.target.setAttribute("class", "active");
-  //part of the attempts to get the previous button to set so I could remove it later
-  //pagePrevious = e.target.innerHTML;
-console.log("pageSelected",pageSelected);
-  //calls the displayStudents() function and sends the students list so that the students can be displayed
+  console.log("pageSelected",pageSelected);
   displayStudents(students);
 }
 
@@ -163,7 +165,7 @@ if (filter !== ""){
    }
  } else {
    displayStudents(students);
-   numberOfMatches += 1;
+//numberOfMatches += 1;
    //if statement that sets whether the no-matches div/message is shown. First level is when there are no matches and it needs to be shown. I am currently receiving an error message from the remove method when there is nothing to remove but the program is operating as it should as far as I can tell.
    if (numberOfMatches === 0) {
      //creates div to include the no-matches message
