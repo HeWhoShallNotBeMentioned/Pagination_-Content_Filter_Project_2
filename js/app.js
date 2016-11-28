@@ -152,20 +152,26 @@ for (var k = 0; k < allStudents.length; k++) {
  //find the person element so that we can set the appropriate display based on whether they were found in the search
  var personDisplay = document.getElementsByClassName('student-list')[0].children[k];
 
-if (filter !== ""){
+
+
   //function that does the searching using indexOf and the text from the search box
   if ((personName.toLowerCase().indexOf(filter) || personEmail.toLowerCase().indexOf(filter)) > -1) {
+    //messageRemoval();
      //if the filter is found in indexOf for either the name or email the dispay is set to "" showing the item
       personDisplay.style.display = "";
       //the numberOfMatches is increased by one 1 which means that the no matching items will not display
       numberOfMatches += 1;
+
    } else {
      // there are no matches the item is set to none.
        personDisplay.style.display = "none";
    }
- } else {
+ }
+
+if (filter === ""){
    displayStudents(students);
-//numberOfMatches += 1;
+ }
+
    //if statement that sets whether the no-matches div/message is shown. First level is when there are no matches and it needs to be shown. I am currently receiving an error message from the remove method when there is nothing to remove but the program is operating as it should as far as I can tell.
    if (numberOfMatches === 0) {
      //creates div to include the no-matches message
@@ -178,15 +184,19 @@ if (filter !== ""){
        var pageHeader = document.getElementsByClassName("page-header")[0];
        //attaches the no-matches div to the element just selected
        pageHeader.appendChild(messageDiv);
-       } else {
-         //creates a variable to store the no-matches div when it needs to be removed
-         messageDivRemoval = document.getElementsByClassName("no-matches")[0];
-         //removes the no-matches div
-         messageDivRemoval.remove();
+     } else {
+       messageRemoval();
+     }
 
-       }
-    }
-  }
+
+}
+
+function messageRemoval(){
+  var messageDivRemoval = document.getElementsByClassName("no-matches")[0];
+  //removes the no-matches div
+  //var parentNode = document.getElementsByClassName("page-header")[0];
+
+  messageDivRemoval.remove();
 }
 
 //calls the function that adds the paginiation
