@@ -18,7 +18,6 @@ var pagePrevious = 1;
 
 function addPagination(students) {
 //function that adds paginiation to the page.
- console.log("page #s:   ", pageNum);
   //creates the div for the pagination
   var pageDiv = document.createElement("div");
   //creates the ul element for the pagination
@@ -89,17 +88,11 @@ function displayStudents (students) {
 
 //Determines the page number selected and higlights it in the pagination
 function pickPage(e) {
-  // console.log("Inside pickPage");
-  // console.log("event: ", e);
-  // console.log(e.target.innerHTML);
   var ulElement = document.getElementsByClassName("pagination")[0];
-  // console.log(ulElement);
   var liElements = ulElement.getElementsByTagName("a");
-  // console.log("liElements  ",liElements);
 
   for (var x = 0; x < liElements.length; x++) {
     liElements[x].classList.remove("active");
-    // console.log(liElements[x]);
   }
   pageSelected = e.target.innerHTML;
   e.target.setAttribute("class", "active");
@@ -141,9 +134,8 @@ function eachPerson() {
  var filter = myInput.value.toLowerCase();
  //initializes numberOfMatches and sets it to 0 for every time the function is entered on keyup
  var numberOfMatches = 0;
- //initializes a varible for removing the message that no items are matching the search. It needs to be out here for scope.
- var messageDivRemoval;
-//function that finds if the text submitted on the search button matches any entries in the email or name fields
+
+
 for (var k = 0; k < allStudents.length; k++) {
   //grabs the name text for each student as it goes through the loop
  var personName = allStudents[k].getElementsByTagName("H3")[0].innerText;
@@ -152,11 +144,8 @@ for (var k = 0; k < allStudents.length; k++) {
  //find the person element so that we can set the appropriate display based on whether they were found in the search
  var personDisplay = document.getElementsByClassName('student-list')[0].children[k];
 
-
-
   //function that does the searching using indexOf and the text from the search box
   if ((personName.toLowerCase().indexOf(filter) || personEmail.toLowerCase().indexOf(filter)) > -1) {
-    //messageRemoval();
      //if the filter is found in indexOf for either the name or email the dispay is set to "" showing the item
       personDisplay.style.display = "";
       //the numberOfMatches is increased by one 1 which means that the no matching items will not display
@@ -168,9 +157,9 @@ for (var k = 0; k < allStudents.length; k++) {
    }
  }
 
-if (filter === ""){
+ if (filter === ""){
    displayStudents(students);
- }
+  }
 
    //if statement that sets whether the no-matches div/message is shown. First level is when there are no matches and it needs to be shown. I am currently receiving an error message from the remove method when there is nothing to remove but the program is operating as it should as far as I can tell.
    if (numberOfMatches === 0) {
@@ -187,8 +176,6 @@ if (filter === ""){
      } else {
        messageRemoval();
      }
-
-
 }
 
 function messageRemoval(){
@@ -207,9 +194,3 @@ pageDOM.addEventListener('click', pickPage, false);
 addSearchBox();
 //function that displays the students upon open
 displayStudents(students);
-
-//notes on trying to complete the active page button feature
-//Highlight current page via paginate button
-  //change previous alink
-  //get clicked link
-  //change to clicked alink
