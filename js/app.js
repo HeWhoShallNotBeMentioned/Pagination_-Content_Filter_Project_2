@@ -126,6 +126,7 @@ console.log("Inside Search Box");
 }
 
 function eachPerson() {
+  document.getElementsByClassName('pagination')[0].style.visibility = 'hidden';
   //creates a new variable that contains all Students for the search function. created seperate list so it would not conflict with the regular students list.
  var allStudents = students;
  //finds the input searchbox in the DOM
@@ -159,10 +160,13 @@ for (var k = 0; k < allStudents.length; k++) {
 
  if (filter === ""){
    displayStudents(students);
+   document.getElementsByClassName('pagination')[0].style.visibility = 'visible';
   }
 
    //if statement that sets whether the no-matches div/message is shown. First level is when there are no matches and it needs to be shown. I am currently receiving an error message from the remove method when there is nothing to remove but the program is operating as it should as far as I can tell.
-   if (numberOfMatches === 0) {
+
+
+   if ((numberOfMatches === 0) && (!document.getElementsByClassName("no-matches")[0])) {
      //creates div to include the no-matches message
      var messageDiv = document.createElement("div");
        //sets the class to no-matches for the div
@@ -173,9 +177,12 @@ for (var k = 0; k < allStudents.length; k++) {
        var pageHeader = document.getElementsByClassName("page-header")[0];
        //attaches the no-matches div to the element just selected
        pageHeader.appendChild(messageDiv);
-     } else {
+     }
+
+    if (numberOfMatches !== 0){
        messageRemoval();
      }
+
 }
 
 function messageRemoval(){
