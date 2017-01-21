@@ -99,7 +99,7 @@ body{
   margin: 40px 0 0 0;
   text-align: center;
 }
- 
+
   .pagination li{
     display: inline;
   }
@@ -116,4 +116,9 @@ body{
     .pagination li a:hover{
       background-color: #4ba6c3;
       color: #fff;
+    }
+
+    .no-matches {
+      color: red;
+      padding-left: 155px;
     }
