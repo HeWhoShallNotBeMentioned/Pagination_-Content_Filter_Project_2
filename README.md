@@ -14,7 +14,7 @@ Download the files and open the index.html file in the browser of your choice.
 
 ## Known Bugs
 
-_{The previously mentioned highlighting of pagination buttons. Whenm in the search box and after I have no users meeting the criteria, you will need to refresh the page or click on a page number to "reset" the program.  When using the search box, when the program is returning users I am receiving an error in the console that my code to remove the message div is giving an error (Uncaught TypeError: Cannot read property 'remove' of undefine). The code appears to be working fine for the user.}_
+_{None that I am aware of.}_
 
 ## Support and contact details
 
